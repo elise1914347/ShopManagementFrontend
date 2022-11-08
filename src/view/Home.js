@@ -16,6 +16,7 @@ const ViewComponent = (props)=>{
                    
                     <Stack spacing={2} alignItems="center"></Stack>
                     <img src={logo} className="image"></img>
+                    <label style={{justifyContent:"center",position:"relative",left:"15rem",bottom:"40px"}}>SignShopManagement</label>
                 <TextField
                     fullWidth id="filled-basic" label="Email" variant="filled"></TextField>
                     <TextField
