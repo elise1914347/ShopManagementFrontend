@@ -4,6 +4,7 @@ import {createSlice} from "@reduxjs/toolkit";
 const authSlice = createSlice({
 name:"authentication",
 initialState:{token:"", user:{},isFetching:false},
+// initialState:{ products:[],selectedProduct:{},}
 reducers:{
     login(state,action){
         state.token = action.payload?.data?.token;
