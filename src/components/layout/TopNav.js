@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -8,14 +7,19 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
-import PersonAdd from '@mui/icons-material/PersonAdd';
+
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import { Card } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import Avatar from '@mui/material/Avatar';
+import Stack from '@mui/material/Stack';
+import { useSelector } from 'react-redux';
+import PersonAdd from "@mui/icons-material/PersonAdd"
 
 export default function AccountMenu() {
   const navigate = useNavigate();
+  const{user} = useSelector((state)=> state.auth);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -29,16 +33,20 @@ export default function AccountMenu() {
       <Card sx={{minHeight:"3rem", display: 'flex', alignItems: 'center', textAlign: 'center',justifyContent: 'end',paddingRight:"5rem"}}>
 
         <Typography sx={{ minWidth: 100 }}><b>Admin</b> ~ EliseDUSENGEMUNGU</Typography>
+        <Typography sx={{ minWidth: 100 }}>
+          <b>{user?.role}</b> ~ {user?.names}
+        </Typography>
         <Tooltip title="Account settings">
           <IconButton
             onClick={handleClick}
             size="small"
             sx={{ ml: 2 }}
-            aria-controls={open ? 'account-menu' : undefined}
+            aria-controls={open ? "account-menu" : undefined}
             aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
+            aria-expanded={open ? "true" : undefined}
           >
-            <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+         <Avatar sx={{ width: 52, height: 52 }} src={user?.picture}></Avatar>
+
           </IconButton>
         </Tooltip>
       </Card>
@@ -78,14 +86,14 @@ export default function AccountMenu() {
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
         <MenuItem>
-          <Avatar /> Profile
+        
         </MenuItem>
         <MenuItem>
-          <Avatar /> My account
+        <Avatar/> profile
         </MenuItem>
         <Divider />
         <MenuItem>
-          <ListItemIcon>
+        <ListItemIcon>
             <PersonAdd fontSize="small" />
           </ListItemIcon>
           Add another account
